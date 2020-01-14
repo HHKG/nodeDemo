@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>todoApp</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <link rel="stylesheet" href="../public/assets/style.css">
+    <!--<link rel="stylesheet" href="/assets/style.css"/>-->
+</head>
+<body>
+<header>
+     <from>
+         <input type="text" placeholder="请输入内容.." name="item" id="getCnt"/>
+        <div class="btn">
+            <button type="submit" id="add"></button>
+        </div>
+     </from>
+</header>
+<!--两个容器-->
+<div class="container">
+    <!--未完成的列表-->
+    <ul class="todo" id="todo">
+        <%todos.forEach(function(todo){%>
+            <li>
+            <div class="f-16">
+            <%=todo.item%>
+            </div>
+            <div class="icons">
+            <img class="doIcon remove" src="../public/images/haveDelete.png"/>
+            <img class="doIcon" src="../public/images/finshed.png"/>
+            </div>
+            </li>
+        <%})%>
+    </ul>
+    <!--已完成的列表-->
+    <ul class="todo" id="complete">
+        <li>
+            <div class="f-16">
+                这是通过一直以来坚持不懈努力完成的项目啊
+            </div>
+            <div class="icons">
+                <img class="doIcon" src="../public/images/haveDelete.png"/>
+                <img class="doIcon" src="../public/images/haveFinish.png"/>
+            </div>
+        </li>
+    </ul>
+</div>
+</body>
+<script>
+    $(document).ready(function(){
+       //增加数据
+       $('#add').click(function(){
+           alert('ok')
+           //获取input中的值
+           var item =$('from input');
+           var todo={item:item.val()};
+           console.log(item.val());
+           //判断内容是否为空
+           if(todo.item==''){
+               alert('内容不能为空，请重新输入');
+               return false;
+           }
+
+           //发送数据
+           $.ajax({
+               type:'POST',
+               url:'/todo',
+               data:todo,
+               success:function(data){
+                   console.log(data);
+               }
+           })
+       });
+    // 删除数据
+        $('.remove').click(function(){
+           var item=$.trim($(this).parent().parent().text());
+           alert(item)
+        //   将数据传递到服务器
+            $.ajax({
+                type:'DELETE',
+                url:'/todo/'+item,
+                success(data){
+                    console.log(data,'==============');
+                    //coding...
+                    //刷新页面
+                    location.reload();
+                }
+            })
+        })
+    });
+</script>
+</html>

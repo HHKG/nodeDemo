@@ -1,0 +1,116 @@
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    background:#edf0f1;
+    padding:80px 0px;
+}
+header{
+    width:100%;
+    height:80px;
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 5;
+    background: #25b99a;
+    -webkit-box-shadow:0px 2px 4px rgba(44,62,80,0.15);
+    box-shadow:0px 2px 4px rgba(44,62,80,0.15);
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius:10px;
+}
+from{
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-items: center;
+    height:100%;
+    padding:0 30px;
+}
+#add{
+    width:60px;
+    height:60px;
+    border-radius: 61px;
+    background-color: #fff;
+    border:hidden;
+    position: relative;
+}
+#add::before{
+    position: absolute;
+    top:50%;
+    left:50%;
+    margin:-20px 0 0 -20px;
+    z-index:6;
+    content: '';
+    width: 40px;
+    height: 40px;
+    background-image: url('../images/add.png');
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+}
+input{
+    width:100%;
+    height: 60px;
+    background-color:rgba(255,255,255,0.3);
+    border:hidden;
+    color:#fff;
+    outline: none;
+    border-radius: 61px;
+    padding:0 30px;
+}
+input::placeholder{
+    color:#fff;
+}
+.btn{
+    position: absolute;
+    right:30px;
+}
+.todo{
+    background-color:#fff;
+    padding:30px!important;
+    margin:40px 30px 30px 30px;
+    border-radius: 12px;
+}
+.doIcon{
+    width:20px;
+    height:20px;
+}
+ul,li{
+    margin: 0;
+    padding:0;
+    list-style: none;
+}
+li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.icons{
+    display: flex;
+    align-items: center;
+}
+.f-16{
+    font-size: 16px;
+    color: #000;
+    white-space: nowrap;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+li{
+    padding: 30px 0px;
+    border-bottom: 1px solid #25b99a;
+}
+#complete{
+   position: relative;
+}
+#complete::before{
+    width: 150px;
+    height:10px;
+    content: '';
+    top:-150px;
+    left:0;
+    /*transform: scale(1,0.5);*/
+    border-top:1px solid red;
+    z-index: 20;
+}
